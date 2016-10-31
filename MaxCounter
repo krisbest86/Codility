@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int[] solution(int N, int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        int[] B=new int[N];
+        bool isMaxCounter=false;
+        int max=0;
+        List<int> lista=new List<int>();
+        
+        for (int i=A.Length-1;i>=0;i--){
+            
+            if(isMaxCounter){
+                
+                if (A[i]==N+1 || i==0){
+                    
+                    max+=MaxCounter(lista) ;   
+                    lista.Clear();
+                 }
+                 else{
+                     lista.Add(A[i]);
+                 }
+                
+                     
+            }
+            else{
+                //Console.WriteLine(A[i]);
+             if (A[i]==N+1){
+                isMaxCounter=true;   
+            
+             }
+             else{
+                B[A[i]-1]++;
+             }
+            }
+        
+        }
+        
+        for (int j=0;j<B.Length;j++){
+         B[j]+=max;   
+        }
+        
+        return B;
+        
+    }
+    
+    
+    private int MaxCounter(List<int> A){
+        if(A.Count()==0){
+            return 0;
+        }
+        else{
+            return A.GroupBy(a=>a).Select(x=>x.Count()).OrderByDescending(b=>b).First();
+        }
+        
+    }
+}
