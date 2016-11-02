@@ -1,0 +1,38 @@
+    class Solution4
+    {
+        public int solution(int[] A)
+        {
+            // write your code in C# 6.0 with .NET 4.5 (Mono)
+            int sum1 = A[0];
+            int sum2 = 0;
+            int min = 0;
+
+            for (int i = 1; i < A.Length; i++)
+            {
+                sum2 += A[i];
+            }
+
+　
+　
+            for (int i = 1; i < A.Length; i++)
+            {
+                if (i == 1)
+                {
+                    //Console.WriteLine("|{0} -{1}|={2}",sum1,sum2,Math.Abs(sum1-sum2));
+                    min = Math.Abs(sum1 - sum2);
+                }
+                else
+                {
+                    sum1 += A[i - 1];
+                    sum2 -= A[i - 1];
+                    //Console.WriteLine("|{0} -{1}|={2}",sum1,sum2,Math.Abs(sum1-sum2));
+                    if (Math.Abs(sum1 - sum2) < min)
+                    {
+                        min = Math.Abs(sum1 - sum2);
+                    }
+                }
+            }
+
+            return min;
+        }
+    }
