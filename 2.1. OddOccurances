@@ -1,0 +1,23 @@
+    class Solution2
+    {
+        public int solution(int[] A)
+        {
+            // write your code in C# 6.0 with .NET 4.5 (Mono)
+            List<int> pairs = A.ToList();
+
+            var groups = pairs.GroupBy(a => a);
+
+            foreach (var elem in groups)
+            {
+                if (elem.Count() % 2 != 0)
+                {
+                    return elem.Key;
+                }
+
+            }
+
+            return A[0];
+
+　
+        }
+    }
