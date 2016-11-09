@@ -1,0 +1,25 @@
+   public  class Solution5_2
+    {
+        public int solution(int a, int b, int k)
+        {
+            // write your code in C# 6.0 with .NET 4.5 (Mono)
+            if (k == 0)
+            {
+                throw new DivideByZeroException("Denominator cannot be 0");
+            }
+
+            if (a % k == 0 || b % k == 0)
+            {
+                
+                return 1+((b - a) / k);
+          
+            }
+            else
+            {
+                
+                return (b - a) / k;
+            }
+
+           
+        }
+    }
