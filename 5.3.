@@ -1,0 +1,76 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int[] solution(string S, int[] P, int[] Q) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        
+            int M=P.Length;        
+                  int[] result=new int[M];
+          int[,] matrix = new int[4,S.Length];
+          int sumA=0;
+          int sumC=0;
+          int sumG=0;
+          int sumT=0;
+
+          //creating matrix
+          for (int k = 0; k < S.Length; k++)
+          {
+              if (S.Substring(k, 1)=="A")
+              {
+                  sumA++;
+              }
+              else if (S.Substring(k, 1) == "C")
+              {
+                  sumC++;
+              }
+              else if (S.Substring(k, 1) == "G")
+              {
+                  sumG++;
+              }
+              else if (S.Substring(k, 1) == "T")
+              {
+                  sumT++;
+              }
+
+              matrix[0, k] = sumA;
+              matrix[1, k] = sumC;
+              matrix[2, k] = sumG;
+              matrix[3, k] = sumT;
+          }
+         
+
+            //running through queries
+
+          for (int i = 0; i < M; i++)
+          {
+              if ( P[i] >0 ? matrix[0, Q[i]] - matrix[0, P[i] - 1] > 0 : matrix[0, Q[i]] > 0)
+              {
+                  result[i] = 1;
+              }
+              else if (P[i] > 0 ? matrix[1, Q[i]] - matrix[1, P[i] - 1] > 0 : matrix[1, Q[i]]  > 0)
+              {
+                  result[i] = 2;
+              }
+              else if (P[i]> 0 ? matrix[2, Q[i]] - matrix[2, P[i] - 1] > 0 : matrix[2, Q[i]] > 0)
+              {
+                  result[i] = 3;
+              }
+              else
+              {
+                  result[i] = 4;
+              }
+          }
+  
+
+
+     
+
+
+              return result;
+    }
+}
