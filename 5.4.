@@ -1,0 +1,36 @@
+//the key is to understand that you do not have to check all possibilities. The minimum slice can only consist of 2 or 3 bites :)
+//if you have bites>3 you can divide it to slices that one has minimum avarage. If it is equal you take the slice which is earlier in array.
+
+
+class Solution {
+    public int solution(int[] P) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+                    int result = 0;
+            double avg = (double)(P[1] + P[0]) / 2;
+
+            for (int i = 2; i < P.Length; i++)
+            {
+
+                if ((double)(P[i] + P[i - 1]) / 2 < avg)
+                {
+                    avg = (double)(P[i] + P[i - 1]) / 2;
+                    result = i - 1;
+                }
+
+
+                if ((double)(P[i] + P[i - 1] + P[i - 2]) / 3 < avg)
+                {
+                    avg = (double)(P[i] + P[i - 1] + P[i - 2]) / 3;
+                    result = i - 2;
+                }
+ 
+
+            }
+
+
+
+
+
+            return result;
+    }
+}
