@@ -1,0 +1,22 @@
+class Solution {
+    public int solution(int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        Array.Sort(A);
+        int counter=1;
+        if (A.Length>0){
+        
+        for (int a=1;a< A.Length;a++){
+            
+            if(A[a]>A[a-1]){
+                counter++;   
+            }
+        
+        }
+            return counter;
+        }
+        else{
+            
+            return 0;
+        }
+    }
+}
