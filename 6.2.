@@ -1,0 +1,14 @@
+class Solution {
+    public int solution(int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        
+      Array.Sort(A);
+        
+        if(A[0]*A[1]>A[A.Length-3]*A[A.Length-2] && A[A.Length-1]>0){
+            return    A[0]*A[1]*A[A.Length-1];
+        }
+        else{
+            return    A[A.Length-3]*A[A.Length-2]*A[A.Length-1];
+        }
+    }
+}
