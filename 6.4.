@@ -1,1 +1,40 @@
-class Solution {    public int solution(int[] A) {        // write your code in C# 6.0 with .NET 4.5 (Mono)                //int[] B=new int[A.Length];        int min;        int max;        int suma=0;                for(int i=0;i<A.Length;i++){                        min=Math.Max(0,i-A[i]);            max=Math.Min(A.Length-1,i+A[i]);            Console.WriteLine("min: {0}, maks: {1}",min,max);                                                       }                        return suma;            }}
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int[] P) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+            int[] mins = new int[P.Length];
+            int[] maks = new int[P.Length];
+            int counter = 0;
+
+            for (int i = 0; i < P.Length; i++)
+            {
+                mins[i] = Math.Max(i - P[i],0);
+                maks[i] = (int)Math.Min((long)i + P[i],2147483647);
+
+            }
+
+
+
+            for (int i = 0; i < P.Length; i++)
+            {
+                for (int j = i + 1; j < P.Length; j++)
+                {
+                    if (maks[i] >= mins[j] )
+                    {
+                        counter++;
+                    }
+
+                }
+
+            }
+
+
+                return counter;
+    }
+}
