@@ -1,0 +1,55 @@
+using System;
+// you can also use other imports, for example:
+ using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        List<int> stack=new List<int>();
+        int result=-1;
+        int candidate=0;
+        int counter=0;
+        int place=0;
+        
+        if(A.Length==0)
+            return -1;
+        
+        for(int i=0;i<A.Length;i++){
+            if(stack.Count==0){
+                stack.Add(A[i]);   
+            }
+            else{
+                if (stack[stack.Count-1]!=A[i]){
+                    stack.RemoveAt(stack.Count-1);   
+                }
+                else{
+                    stack.Add(A[i]); 
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+        if(stack.Count>0){
+            candidate=stack[stack.Count-1];
+        }
+        
+        for(int j=0;j<A.Length;j++){
+            if (A[j]==candidate){
+                counter++;
+                place=j;
+            }
+        }
+        
+        if ((double)counter>(double)A.Length/2)
+            result=place;
+            
+            
+        return result;
+    }
+}
