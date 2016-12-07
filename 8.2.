@@ -1,0 +1,81 @@
+using System;
+// you can also use other imports, for example:
+using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+                List<int> stack=new List<int>();
+
+        int result=0;
+        int candidate=0;
+        int counter=0;
+        int[] prefixSum=new int[A.Length];
+
+        
+
+        if(A.Length==0)
+            return 0;
+
+        
+
+        for(int i=0;i<A.Length;i++){
+
+            if(stack.Count==0){
+                stack.Add(A[i]);   
+            }
+
+            else{
+
+                if (stack[stack.Count-1]!=A[i]){
+                    stack.RemoveAt(stack.Count-1);   
+                }
+
+                else{
+                    stack.Add(A[i]); 
+                }
+            }
+        }
+
+        
+
+        if(stack.Count>0){
+            candidate=stack[stack.Count-1];
+        }
+        else{ //there is no candidate
+            return result;   
+        }
+
+        
+        //counting how many times candidate occurs
+        for(int j=0;j<A.Length;j++){
+            
+            if (A[j]==candidate){
+                counter++;                
+            }
+            prefixSum[j]=counter;
+        }
+
+        
+
+        if (counter>A.Length/2){//if we have a leader
+            
+                for (int j = 0; j < A.Length; j++)
+                {
+                    if (prefixSum[j] > (j + 1) / 2 && counter - prefixSum[j] > (A.Length - j - 1) / 2)
+                    {
+                        result++;
+                    }
+                }
+        }
+  
+            
+         return result;
+            
+
+       
+    }
+}
