@@ -1,0 +1,33 @@
+class Solution {
+    public int solution(int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        
+        int maxSlice=A[0];
+        int sum=0;
+    
+        
+        
+        if(A.Length==0){
+            return 0;   
+        }
+        else if(A.Length==1){
+            return A[0];   
+        }
+        else{
+            
+  
+            
+            
+            for(int i=0;i<A.Length;i++){
+                    
+              
+               sum=Math.Max(A[i],sum+A[i]);
+               maxSlice=Math.Max(sum,maxSlice);
+            }       
+             
+             
+                   
+         return maxSlice; 
+    }
+  }
+}
