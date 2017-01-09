@@ -1,0 +1,96 @@
+class Solution
+    {
+        public int[] sort(int[] A)
+        {
+            // write your code in C# 6.0 with .NET 4.5 (Mono)
+            int length = A.Length;
+            int[] sorted=A;
+            
+
+            int size = 1;
+
+            while (size <= sorted.Length)
+            {
+                int[] temp = new int[0];
+                for (int i = 0; i < sorted.Length; i+=size*2)
+                {
+
+                    if (i + size   > sorted.Length - 1)
+                    {
+                        int[] first = new int[sorted.Length -i];
+                        Array.Copy(sorted, i, first, 0, sorted.Length - i);
+                        int[] second = new int[0];
+                        temp = temp.Concat(sortTwoArrays(first, second)).ToArray();
+                    }
+                    
+                    else if (i + size +size > sorted.Length - 1)
+                    {
+                        int[] first = new int[size ];
+                        Array.Copy(sorted, i, first, 0, size );
+                        int[] second = new int[sorted.Length - i-size];
+                        Array.Copy(sorted, i + size, second, 0, sorted.Length - i-size);
+                        temp = temp.Concat(sortTwoArrays(first, second)).ToArray();
+                    }
+                    else
+                    {
+                        int[] first = new int[size ];
+                        Array.Copy(sorted, i, first, 0, size );
+                        int[] second = new int[size ];
+                        Array.Copy(sorted, i + (size ), second, 0, size );
+                        temp = temp.Concat(sortTwoArrays(first, second)).ToArray();
+                    }
+               
+                   
+
+                    
+                    
+                }
+
+                sorted = temp;
+                size *=2;
+            }
+
+
+
+            return sorted;
+        }
+
+
+        private int[] sortTwoArrays(int[] A, int[] B)
+        {
+            int[] sorted = new int[A.Length + B.Length];
+            int posA = 0;
+            int posB = 0;
+
+
+            for (int i = 0; i < sorted.Length; i++)
+            {
+                if (A.Length == 0 || posA>=A.Length)
+                {
+                    sorted[i] = B[posB];
+                    posB++;
+                }
+                else if (B.Length==0 || posB >= B.Length)
+                {
+                    sorted[i] = A[posA];
+                    posA++;
+
+                }
+                else if (B[posB] > A[posA])
+                {
+                    sorted[i] = A[posA];
+                    posA++;
+
+                }
+                else
+                {
+                    sorted[i] = B[posB];
+                    posB++;
+
+                }
+            }
+
+
+            return sorted;
+        }
+    }
