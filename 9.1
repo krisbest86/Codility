@@ -18,10 +18,12 @@ class Solution {
             
         }
         
+        //the goal os the function is get the beiggest upward movement; in order to have it we need to calculate local mina nd max
         for(int i=0;i<dailyProfit.Length;i++){
-            
+           
+           //if sum+dailyProfit[i] then we get local minimum
             sum=Math.Max(0,sum+dailyProfit[i]);
-           //Console.WriteLine("{0} : {1}",sum,dailyProfit[i]);
+           //if maxProfit is higher than sum we get local max
             maxProfit=Math.Max(maxProfit,sum);
             
         }
