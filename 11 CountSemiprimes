@@ -1,0 +1,65 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int[] solution(int N, int[] P, int[] Q) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        
+     
+        
+        var PrimeNumbers=new int[N+1]; 
+        var semiPrimeNumbers=new int[N+1]; 
+        var PrimeNumbersSum=new int[N+1];        
+        var result=new int[P.Length];
+         
+         //prime
+        for(int i=2;i*i<=N;i++){
+           
+           var   k=i*i;
+           
+           while(k<=N){
+               
+              if(PrimeNumbers[k]==0)              
+                PrimeNumbers[k]=i; 
+                
+                k+=i;
+           }
+        }
+         
+         //semiprime
+        for(int i=2;i<=N;i++){
+           
+           if(PrimeNumbers[i]>0 && PrimeNumbers[i/PrimeNumbers[i]]==0)
+              semiPrimeNumbers[i]++;  
+            
+        }
+         
+         
+        
+         //sum    
+         var sum=0;
+        for(int i=2;i<=N;i++){
+           
+           
+           if(semiPrimeNumbers[i]>0)
+            sum++;
+            
+            
+           PrimeNumbersSum[i]=sum;
+           //Console.WriteLine(String.Format("i({0}): {1},{2},{3}",i,PrimeNumbers[i],semiPrimeNumbers[i]//,PrimeNumbersSum[i]));
+           
+        }
+        
+        
+        //counting semiprimes
+        for(int i=0;i<P.Length;i++){
+            result[i]=PrimeNumbersSum[Q[i]]-PrimeNumbersSum[P[i]-1];
+        }
+        
+        return result;
+    }
+}
