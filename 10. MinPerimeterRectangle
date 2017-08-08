@@ -1,0 +1,21 @@
+    class Solution102
+    {
+        public int Solution(int n)
+        {
+            int i = 2;
+            int minPerimeter = 2 * (1 + n); //when n has no dividers and sides are equal 1 and n
+
+            while (i * i <= n)
+            {
+
+                if (n % i == 0)
+                {
+                    minPerimeter = Math.Min(minPerimeter, 2 * (i + n / i));
+                }
+                i++;
+            }
+
+
+            return minPerimeter;
+        }
+    }
