@@ -1,0 +1,79 @@
+static class  Solution104
+    {
+        public static int Solution(int [] array)//O(N * sqrt(N))
+        {
+            int[] peaksArray = new int[array.Length];//show peaks
+            int[] sumPeaks = new int[array.Length];//counter of peaks
+            var flags = 1;//number of flags -used  only when there is a possibility of at least two flags
+            var divider = 2; //when there is less than 2 peaks there is no need of caluclation distances between peaks
+            var firstPeak = 0;
+
+            for (int i = 1; i < array.Length - 1; i++)
+            {
+
+                if (array[i] > array[i - 1] && array[i] > array[i + 1])
+                {
+                    peaksArray[i] = 1;
+                }
+
+            }
+
+
+            int sum = 0;
+            for (int i = 1; i < array.Length; i++)
+            {
+
+                if (peaksArray[i] == 1)
+                {
+                    sum++;
+                    if (firstPeak == 0)
+                        firstPeak = i;
+                }
+
+                
+
+                sumPeaks[i] = sum;
+            }
+
+            if (sumPeaks[array.Length - 1] < 2)// no peaks no flags , one peak one flag
+                return sumPeaks[array.Length - 1];
+
+
+            while (divider*divider < array.Length)
+            {
+                var counter = 0;
+                var peak = 0;
+
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (peaksArray[i] == 1)
+                    {
+                        if (peak == 0 || (peak != 0 && i - peak >= divider))
+                        {
+                            counter++;
+                            peak = i;
+                        }
+
+                    }
+
+                }
+
+                if (counter >= divider)
+                {
+                    flags++;
+                }
+
+
+                divider++;
+            }
+
+
+
+
+
+            return flags;
+        }
+
+        
+    }
