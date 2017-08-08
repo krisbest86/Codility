@@ -1,0 +1,39 @@
+  class Solution101
+    {
+        public int Solution(int n)
+        {
+            // write your code in C# 6.0 with .NET 4.5 (Mono)
+
+
+            long i = 2;
+
+            if (n == 1)
+                return 1;
+
+
+            int result = 2;
+
+            while (i * i < n)
+            {
+
+                if (n % i == 0)
+                {
+                    result += 2;
+                }
+
+                i++;
+
+            }
+
+            if (i * i == n)
+            {
+
+                result++;
+            }
+
+            return result;
+
+
+
+        }
+    }
