@@ -1,0 +1,65 @@
+  class Solution103 //
+    {
+        public int Solution(int[] array)
+        {
+            int[] peaks = new int[array.Length];//show peaks
+            int[] sumPeaks = new int[array.Length];//counter of peaks
+
+            for (int i = 1; i < array.Length - 1; i++)
+            {
+
+                if (array[i] > array[i - 1] && array[i] > array[i + 1])
+                {
+                    peaks[i] = 1;
+                }
+
+            }
+
+
+            int sum = 0;
+            for (int i = 1; i < array.Length ; i++)
+            {
+
+                if (peaks[i] == 1)
+                {
+                    sum++;
+                }
+                sumPeaks[i] = sum;
+            }
+
+            int divider = 1;
+            int numberOfBlocks = 0;
+            while (divider < array.Length)
+            {
+
+
+                if (array.Length % divider == 0)
+                {
+
+                    var symetricDivider = array.Length / divider;
+                    var peaksCounter = true;
+
+                    for (int i = symetricDivider; i <= array.Length; i = i + symetricDivider)
+                    {
+
+                        if (sumPeaks[i-1]-1 < sumPeaks[i - symetricDivider])
+                        {
+                            peaksCounter=false;
+                        }
+                    }
+
+                    if (peaksCounter)
+                    {
+                        numberOfBlocks=divider;
+                    }
+
+                }
+
+                divider++;
+            }
+
+
+
+            return numberOfBlocks;
+        }
+    }
