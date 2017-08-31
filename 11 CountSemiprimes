@@ -16,7 +16,7 @@ class Solution {
         var PrimeNumbersSum=new int[N+1];        
         var result=new int[P.Length];
          
-         //prime
+         //prime numbers i have 0 value in PrimeNumbersArray, others i have their smallest divisor as a value in PrimeNumbersArray
         for(int i=2;i*i<=N;i++){
            
            var   k=i*i;
@@ -30,7 +30,7 @@ class Solution {
            }
         }
          
-         //semiprime
+         //I count semiprimes, so the number that has only prime dividors, the technique is called factorization
         for(int i=2;i<=N;i++){
            
            if(PrimeNumbers[i]>0 && PrimeNumbers[i/PrimeNumbers[i]]==0)
