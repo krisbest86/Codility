@@ -1,0 +1,23 @@
+1. Version with O(N ^ 2)
+
+class Solution {
+    public int[] solution(int[] A) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        var result=new int[A.Length];
+        
+        for (var i=0;i<A.Length;i++){
+           for (var j=0;j<A.Length;j++){
+                if(i!=j && A[i]%A[j]!=0){
+                    
+                    result[i]++;
+                }
+           } 
+        }
+        
+        
+        return result;
+    }
+}
+
+
+2. Version with O(N*log(N))
