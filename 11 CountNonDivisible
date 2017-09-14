@@ -5,7 +5,7 @@ class Solution {
         // write your code in C# 6.0 with .NET 4.5 (Mono)
         var result=new int[A.Length];
         
-        for (var i=0;i<A.Length;i++){
+        for (var i=0;i<A.Length;i++){//I check every number against each other
            for (var j=0;j<A.Length;j++){
                 if(i!=j && A[i]%A[j]!=0){
                     
@@ -21,3 +21,69 @@ class Solution {
 
 
 2. Version with O(N*log(N))
+
+
+        public static int[] SolutionShort(int[] a)
+        {
+
+            var result = new int[a.Length];
+            var maxValue = 0;
+
+
+            for (var i = 0; i < a.Length; i++) //calculate max value of integers
+            {
+
+                if (a[i] > maxValue)
+                    maxValue = a[i];
+
+            }
+
+            var divisors = new int[maxValue + 1];//create array with range from 0 to max
+
+//count number of repetition of all integers from array a
+//divisors[5]=0 means there is no in array a
+//divisors[7]=2 means there are two occurance of number 7 in array a
+            for (var i = 0; i < a.Length; i++) 
+            {
+                divisors[a[i]]++;
+            }
+
+
+
+            for (var i = 0; i < a.Length; i++)
+            {
+
+
+                var k = 2;
+                var divisorsNum = 0;
+                while (k * k <= a[i])
+                {
+                    if (a[i] % k == 0)//check if k is a divisor
+                    {
+                        if (k != a[i] / k) //situation when second divisor is different
+                        {
+                            divisorsNum += divisors[k] + divisors[a[i] / k];
+                        }
+                        else
+                        {
+                            divisorsNum += divisors[k];
+                        }
+                    }
+                    k++;
+                }
+
+                if (a[i] == 1) //one is a divisor of all integers
+                {
+                    result[i] = a.Length - divisors[1]; 
+                }
+                else
+                {
+                    result[i] = a.Length - divisors[1] - divisors[a[i]] - divisorsNum; //all numbers minus divisors gives nondivisors
+                }
+
+            }
+
+
+
+            return result;
+        }
