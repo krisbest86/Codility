@@ -1,0 +1,46 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+///62 % solution
+class Solution {
+    public int solution(int N, int M) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        int eatenChocolate=0;
+        int currentChocolate=0;
+        int[] chocolateBar=new int[N];
+        bool eating=true;
+        
+        
+        while(eating){
+            if(chocolateBar[currentChocolate]==0){
+                eatenChocolate++;
+                chocolateBar[currentChocolate]=1;
+                currentChocolate= Res(M+currentChocolate,N);       
+            }else{
+                eating=false;
+            }       
+        }
+     
+        return eatenChocolate; 
+    }
+    
+    
+    private int Res(int a, int b){
+        if(a==b){
+            return 0;
+        } 
+        else if(a<b){
+            return a;
+        }
+        else{
+            return Res(a-b,b);
+        }
+        
+            
+        
+    }
+}
